@@ -1,21 +1,33 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import classes from "./LanguagePicker.module.css";
 import { Group, Menu, UnstyledButton } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { CircleFlag } from "react-circle-flags";
+import { useLocalStorage } from "@mantine/hooks";
 
 interface LanguagePickerProps {}
 
 export const LanguagePicker: FC<LanguagePickerProps> = () => {
   const { i18n } = useTranslation();
+  const [defaultLanguage, setDefaultLanguage] = useLocalStorage({
+    key: "language",
+  });
   const [opened, setOpened] = useState(false);
-  const [selected, setSelected] = useState("en");
+  const [selected, setSelected] = useState<string>();
+
+  useEffect(() => {
+    if (defaultLanguage) {
+      setSelected(defaultLanguage);
+    }
+  }, [defaultLanguage]);
+
   const items = [
     <Menu.Item
       leftSection={<CircleFlag className={classes.flag} countryCode="gb" />}
       onClick={() => {
-        setSelected("en");
+        setDefaultLanguage("en-US");
+        setSelected("en-US");
         i18n.changeLanguage("en");
       }}
       key={"en"}
@@ -25,7 +37,8 @@ export const LanguagePicker: FC<LanguagePickerProps> = () => {
     <Menu.Item
       leftSection={<CircleFlag className={classes.flag} countryCode="ee" />}
       onClick={() => {
-        setSelected("ee");
+        setDefaultLanguage("et-EE");
+        setSelected("et-EE");
         i18n.changeLanguage("et-EE");
       }}
       key={"et-ee"}
@@ -48,7 +61,7 @@ export const LanguagePicker: FC<LanguagePickerProps> = () => {
           data-expanded={opened || undefined}
         >
           <Group gap="xs">
-            {selected === "en" ? (
+            {selected === "en-US" ? (
               <CircleFlag className={classes.flag} countryCode="gb" />
             ) : (
               <CircleFlag className={classes.flag} countryCode="ee" />

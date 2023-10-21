@@ -1,3 +1,4 @@
+/*noinspection ALL*/
 .control {
   width: rem(70);
   height: rem(40);
@@ -5,9 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
-  border-radius: var(--mantine-radius-md);
-  border: rem(1px) solid
-    light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-6));
+  border-radius: var(--mantine-radius-xl);
   transition: background-color 150ms ease;
   background-color: light-dark(
     var(--mantine-color-white),
@@ -44,6 +43,6 @@
 }
 
 .flag {
-  width: rem(18px)!important;
-  height: rem(18px)!important;
+  width: rem(20px)!important;
+  height: rem(20px)!important;
 }

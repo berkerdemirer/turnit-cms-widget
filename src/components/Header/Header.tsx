@@ -13,6 +13,7 @@ import {
 import classes from "./Header.module.css";
 import { LanguagePicker } from "@/components/LanguagePicker/LanguagePicker";
 import { Link } from "react-router-dom";
+import CmsDrawer from "@/components/Drawer/CmsDrawer";
 
 interface HeaderSearchProps {
   links: { link: string; label: string }[];
@@ -43,8 +44,9 @@ const Header: FC<HeaderSearchProps> = ({ links }) => {
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <div>logo</div>
-          <Group h="100%" gap={0} visibleFrom="sm">
+          <Group h="100%" gap={8} visibleFrom="sm">
             {items}
+            <CmsDrawer />
             <LanguagePicker />
           </Group>
 
